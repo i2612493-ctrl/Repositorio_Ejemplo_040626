@@ -1,1 +1,33 @@
+#10. Desglose de moneda
+def simular_cajero():
+    # 1. Definición de denominaciones disponibles
+    denominaciones = [200, 100, 50, 20, 10, 5, 1]
+    
+    # 2. Entrada de datos validada
+    while True:
+        try:
+            monto = int(input('Ingrese la cantidad de dinero a retirar: '))
+            if monto > 0:
+                break
+            else:
+                print('Error: El monto debe ser mayor a 0.')
+        except ValueError:
+            print('Error: Por favor, ingrese un número entero.')
 
+    monto_restante = monto
+    print(f'\n--- Desglose de Retiro por ${monto} ---')
+
+    # 3. Proceso: Cálculo de billetes
+    for billete in denominaciones:
+        if monto_restante >= billete:
+            cantidad = monto_restante // billete
+            monto_restante = monto_restante % billete
+            
+            # Solo mostramos si la cantidad de billetes es mayor a 0
+            etiqueta = 'billete(s)' if billete > 1 else 'moneda(s)'
+            print(f'- {cantidad} {etiqueta} de ${billete}')
+
+    print('----------------------------------')
+    print('Retiro completado con éxito.')
+
+simular_cajero()
