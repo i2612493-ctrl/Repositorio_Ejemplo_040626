@@ -1,1 +1,31 @@
+#5. GANANCIA POR INVERSIÓN BANCARIA
+def solicitar_capital(mensaje):
+    """Solicita el capital inicial y valida que sea un número positivo."""
+    while True:
+        try:
+            valor = float(input(mensaje))
+            if valor > 0:
+                return valor
+            else:
+                print('Error: El capital debe ser mayor a 0.')
+        except ValueError:
+            print('Error: Por favor, ingresa un número válido.')
 
+# 1. Entrada de datos
+print('--- Simulador de Inversión Bancaria ---')
+capital_inicial = solicitar_capital('Ingrese el capital a invertir: ')
+
+# 2. Proceso
+# Tasa: 2% mensual (0.02)
+# Tiempo: 1 año = 12 meses
+tasa_mensual = 0.02
+meses = 12
+
+ganancia = capital_inicial * tasa_mensual * meses
+total_final = capital_inicial + ganancia
+
+# 3. Salida de resultados
+print(f'\n--- Resultados después de 1 año ---')
+print(f'Capital invertido: ${capital_inicial:,.2f}')
+print(f'Ganancia total (2% mensual): ${ganancia:,.2f}')
+print(f'Monto total al finalizar el año: ${total_final:,.2f}')
