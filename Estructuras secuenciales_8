@@ -1,1 +1,38 @@
+# 8. CÁLCULO DE ÁREA DE TERRENO (TRAPECIO RECTÁNGULO)
+def solicitar_medida(mensaje):
+    """Solicita una medida y valida que sea un número positivo."""
+    while True:
+        try:
+            valor = float(input(mensaje))
+            if valor > 0:
+                return valor
+            else:
+                print('Error: La medida debe ser mayor a 0.')
+        except ValueError:
+            print('Error: Por favor, ingresa un número válido.')
 
+# 1. Entrada de datos con validación A > C
+print('--- Cálculo de Área de Terreno ---')
+print('Considere: A = Altura total, B = Base, C = Altura menor')
+
+B = solicitar_medida('Ingrese el lado B (Base): ')
+C = solicitar_medida('Ingrese el lado C (Altura menor): ')
+
+while True:
+    A = solicitar_medida('Ingrese el lado A (Altura total): ')
+    if A > C:
+        break
+    else:
+        print(f'Error: El Lado A ({A}) debe ser mayor al Lado C ({C}) para formar el terreno.')
+
+# 2. Proceso
+area_rectangulo = B * C
+area_triangulo = (B * (A - C)) / 2
+area_total = area_rectangulo + area_triangulo
+
+# 3. Salida de resultados
+print(f'\n--- Resultados del Terreno ---')
+print(f'Área del Rectángulo: {area_rectangulo:.2f} m²')
+print(f'Área del Triángulo: {area_triangulo:.2f} m²')
+print(f'-------------------------------')
+print(f'ÁREA TOTAL DEL TERRENO: {area_total:.2f} m²')
