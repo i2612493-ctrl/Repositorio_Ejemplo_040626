@@ -1,1 +1,42 @@
+# 9. CÁLCULO DE COMPRA CON DESCUENTO Y CAMBIO EN EFECTIVO
+def solicitar_positivo(mensaje):
+    """Solicita un valor numérico y valida que sea mayor o igual a 0."""
+    while True:
+        try:
+            valor = float(input(mensaje))
+            if valor >= 0:
+                return valor
+            else:
+                print('Error: El valor no puede ser negativo.')
+        except ValueError:
+            print('Error: Por favor, ingresa un número válido.')
 
+# 1. Entrada de datos
+print('--- Sistema de Ventas y Caja ---')
+monto_base = solicitar_positivo('Monto base de la compra: ')
+porcentaje_descuento = solicitar_positivo('Porcentaje de descuento (%): ')
+
+# 2. Proceso de descuento
+descuento_monto = monto_base * (porcentaje_descuento / 100)
+total_pagar = monto_base - descuento_monto
+
+print(f'\nTotal neto a pagar: ${total_pagar:,.2f}')
+
+# 3. Pago y cálculo de cambio
+while True:
+    pago_efectivo = solicitar_positivo('Ingrese la cantidad de efectivo recibida: ')
+    if pago_efectivo >= total_pagar:
+        cambio = pago_efectivo - total_pagar
+        break
+    else:
+        faltante = total_pagar - pago_efectivo
+        print(f'Error: El dinero es insuficiente. Faltan ${faltante:,.2f}')
+
+# 4. Salida de resultados
+print(f'\n--- Resumen de Transacción ---')
+print(f'Monto Original:    ${monto_base:,.2f}')
+print(f'Descuento ({porcentaje_descuento}%): -${descuento_monto:,.2f}')
+print(f'-------------------------------')
+print(f'TOTAL A PAGAR:     ${total_pagar:,.2f}')
+print(f'Efectivo Recibido: ${pago_efectivo:,.2f}')
+print(f'CAMBIO A ENTREGAR: ${cambio:,.2f}')
