@@ -1,1 +1,31 @@
+#3. PORCENTAJES DE INVERSIÓN
+def solicitar_monto(mensaje):
+    """Solicita un monto de inversión y valida que sea un número positivo."""
+    while True:
+        try:
+            monto = float(input(mensaje))
+            if monto > 0:
+                return monto
+            else:
+                print('Error: El monto debe ser mayor a 0.')
+        except ValueError:
+            print('Error: Por favor, ingresa un número válido.')
 
+# 1. Entrada de datos
+print('--- Registro de Inversiones ---')
+inv1 = solicitar_monto('Inversión de la Persona 1: ')
+inv2 = solicitar_monto('Inversión de la Persona 2: ')
+inv3 = solicitar_monto('Inversión de la Persona 3: ')
+
+# 2. Proceso: Calcular total y porcentajes
+total = inv1 + inv2 + inv3
+
+p1 = (inv1 / total) * 100
+p2 = (inv2 / total) * 100
+p3 = (inv3 / total) * 100
+
+# 3. Salida de resultados
+print(f'\nCapital Total: ${total:,.2f}')
+print(f'Socio 1: {p1:.2f}%')
+print(f'Socio 2: {p2:.2f}%')
+print(f'Socio 3: {p3:.2f}%')
