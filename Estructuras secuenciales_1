@@ -1,19 +1,37 @@
-#1. VELOCIDAD FINAL
-# Definición de variables iniciales
-velocidad_inicial_kmh = 0  # km/h
-aceleracion = 0.8         # m/s^2
-tiempo = 30                # segundos
+def calcular_velocidad_final(velocidad_inicial_kmh: float, aceleracion: float, tiempo: float) -> tuple[float, float]:
+    """
+    Calcula la velocidad final dado una velocidad inicial, aceleración y tiempo.
+    Retorna una tupla con la velocidad en m/s y en km/h.
+    """
+    # DEFINICIÓN DE VARIABLES
+    velocidad_inicial_ms: float
+    FACTOR_CONVERSION: float = 3.6
+    velocidad_final_ms: float
+    velocidad_final_kmh: float
 
-# 1. Convertir velocidad inicial a m/s (aunque sea 0, es buena práctica)
-# 1 km/h = (1000m / 3600s) = 1/3.6 m/s
-velocidad_inicial_ms = velocidad_inicial_kmh / 3.6
+    # 1. Convertir velocidad inicial a m/s
+    velocidad_inicial_ms = velocidad_inicial_kmh / FACTOR_CONVERSION
 
-# 2. Aplicar la fórmula: vf = vi + a * t
-velocidad_final_ms = velocidad_inicial_ms + (aceleracion * tiempo)
+    # 2. Aplicar la fórmula: vf = vi + a * t
+    velocidad_final_ms = velocidad_inicial_ms + (aceleracion * tiempo)
 
-# 3. Convertir el resultado de vuelta a km/h para mayor claridad
-velocidad_final_kmh = velocidad_final_ms * 3.6
+    # 3. Convertir el resultado de vuelta a km/h
+    velocidad_final_kmh = velocidad_final_ms * FACTOR_CONVERSION
 
-# Mostrar resultados
-print(f"Velocidad final en m/s: {velocidad_final_ms:.2f} m/s")
-print(f"Velocidad final en km/h: {velocidad_final_kmh:.2f} km/h")
+    return velocidad_final_ms, velocidad_final_kmh
+
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    print("--- CÁLCULO DE VELOCIDAD FINAL ---")
+    # Definición de variables iniciales con los valores especificados por el usuario
+    v_inicial: float = 0.0  # km/h
+    a: float = 0.8          # m/s^2
+    t: float = 30.0         # segundos
+
+    # Llamada a la función
+    vf_ms, vf_kmh = calcular_velocidad_final(v_inicial, a, t)
+
+    # Mostrar resultados
+    print(f"\nVelocidad final en m/s:  {vf_ms:.2f} m/s")
+    print(f"Velocidad final en km/h: {vf_kmh:.2f} km/h")
